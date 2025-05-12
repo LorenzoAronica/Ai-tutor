@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 export default function App() {
-  const [input, setInput] = useState("");
-  const [response, setResponse] = useState("");
+  const [input, setInput] = useState('');
+  const [response, setResponse] = useState('');
 
   const sendQuestion = async () => {
     const res = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -25,18 +25,16 @@ export default function App() {
   };
 
   return (
-    <div style={{ padding: 30, fontFamily: "Arial" }}>
-      <h1>🎓 AI Tutor</h1>
+    <div style={{ fontWeight: 300, fontFamily: "Arial" }}>
+      <h1>🎓 Tutor di intelligenza artificiale</h1>
       <input
+        type="text"
         value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="Scrivi una domanda (es: spiegami la fotosintesi)"
-        style={{ width: "80%", padding: 10 }}
+        onChange={e => setInput(e.target.value)}
+        placeholder="Fai una domanda..."
       />
-      <button onClick={sendQuestion} style={{ marginLeft: 10 }}>Invia</button>
-      <div style={{ marginTop: 20, backgroundColor: "#f2f2f2", padding: 15 }}>
-        {response && <p><strong>Risposta:</strong><br />{response}</p>}
-      </div>
+      <button onClick={sendQuestion}>Invia</button>
+      <p>{response}</p>
     </div>
   );
 }
